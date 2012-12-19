@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinNfsGraph", "WinNfsGraph.vcxproj", "{C81CC0C6-EE1B-4BDF-8880-86AB1A8AEC53}"
+	ProjectSection(ProjectDependencies) = postProject
+		{04F7566A-92B4-40A7-B155-759B0A83F489} = {04F7566A-92B4-40A7-B155-759B0A83F489}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NfsGraphLib", "..\NfsGraphLib\NfsGraphLib.vcxproj", "{04F7566A-92B4-40A7-B155-759B0A83F489}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C81CC0C6-EE1B-4BDF-8880-86AB1A8AEC53}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C81CC0C6-EE1B-4BDF-8880-86AB1A8AEC53}.Debug|Win32.Build.0 = Debug|Win32
+		{C81CC0C6-EE1B-4BDF-8880-86AB1A8AEC53}.Release|Win32.ActiveCfg = Release|Win32
+		{C81CC0C6-EE1B-4BDF-8880-86AB1A8AEC53}.Release|Win32.Build.0 = Release|Win32
+		{04F7566A-92B4-40A7-B155-759B0A83F489}.Debug|Win32.ActiveCfg = Debug|Win32
+		{04F7566A-92B4-40A7-B155-759B0A83F489}.Debug|Win32.Build.0 = Debug|Win32
+		{04F7566A-92B4-40A7-B155-759B0A83F489}.Release|Win32.ActiveCfg = Release|Win32
+		{04F7566A-92B4-40A7-B155-759B0A83F489}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
