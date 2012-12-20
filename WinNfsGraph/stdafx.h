@@ -29,7 +29,7 @@ using namespace NfsGraph;
 
 #define DEF_CELL_SIZE       2
 
-#define GRAPH_LEFT_GAP      70
+#define GRAPH_LEFT_GAP      80
 #define GRAPH_BOTTOM_GAP    70
 
 

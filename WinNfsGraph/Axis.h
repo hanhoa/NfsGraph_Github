@@ -21,10 +21,12 @@ public:
 
     U32  GetValueOnAxis(U32 nPosOnAxis);        // in pixel.
 
+    void SetAxisTitle(std::string strTitle) { m_strAxisTitle = strTitle; }
+
     void Draw(CDC *pDC, U32 nStartX, U32 nStartY);
     
 public:
-    static U32 GetLogMarkingGap(U32 nBase);
+    static U32 GetLogMarkingGap(U32 nBase) { return DEF_CELL_SIZE * 10; }
     static U32 GetMarkingGap(double fMag, bool bLog);
 
 private:
@@ -36,5 +38,7 @@ private:
 
     MAG_LEVEL m_eMagnification;   // 실제 값과의 배율.
     U32 m_nScrollPos;             // 스크롤 되었을 때 위치. 가장 왼쪽 혹은 가장 아랫쪽에 보여지는 부분의 Pixel값
+
+    std::string m_strAxisTitle;
 };
 

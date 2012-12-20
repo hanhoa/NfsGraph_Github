@@ -63,7 +63,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//EnableDocking(CBRS_ALIGN_ANY);
 	//DockControlBar(&m_wndToolBar);
 
-    SetTitle("WinNfsGraph v1.0");
+    SetTitle("WinNfsGraph v1.1");
     
 	return 0;
 }

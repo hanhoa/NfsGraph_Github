@@ -4,6 +4,10 @@
 #define LENGTH_OF_SHORT_MARKING     1
 #define LENGTH_OF_LONG_MARKING      3
 
+#define TEXTBOX_SIZE_X_AXIS    34
+#define TEXTBOX_SIZE_Y_AXIS    60
+
+
 
 CAxis::CAxis(AXIS_DIRECTION eDir)
 :m_eDirection(eDir)
@@ -15,17 +19,6 @@ CAxis::CAxis(AXIS_DIRECTION eDir)
 
 CAxis::~CAxis(void)
 {
-}
-
-U32 CAxis::GetLogMarkingGap(U32 nBase)
-{
-    U32 nMarkingGap;
-
-    if(nBase <= 2) nMarkingGap = DEF_CELL_SIZE * 10;
-    else if(nBase <= 5) nMarkingGap = DEF_CELL_SIZE * 10;
-    else if(nBase <= 10) nMarkingGap = DEF_CELL_SIZE * 10;
-
-    return nMarkingGap;
 }
 
 U32 CAxis::GetMarkingGap(double fMag, bool bLog)
@@ -83,6 +76,16 @@ void CAxis::Draw(CDC *pDC, U32 nStartX, U32 nStartY)
 
     if(m_eDirection == AD_HORIZONTAL)
     {
+        
+        CFont font, *pOldFont;
+        font.CreatePointFont(100, "Arial");
+        pOldFont = pDC->SelectObject(&font);
+
+        rcNumber.SetRect(nStartX, nStartY + LENGTH_OF_LONG_MARKING + 30, nStartX + m_nLength, nStartY + LENGTH_OF_LONG_MARKING + 60);
+        pDC->DrawText("Time", rcNumber, DT_SINGLELINE | DT_CENTER | DT_TOP);
+
+        pDC->SelectObject(pOldFont);
+
         pDC->MoveTo(nStartX, nStartY);
         pDC->LineTo(nStartX + m_nLength, nStartY);
 
@@ -102,7 +105,7 @@ void CAxis::Draw(CDC *pDC, U32 nStartX, U32 nStartY)
                     strNum.Format("%d^%d", (U32)fMag, nStartValue);
                 else
                     strNum.Format("%d", nStartValue);
-                rcNumber.SetRect(nStartX + nPos - 17, nStartY + LENGTH_OF_LONG_MARKING + 5, nStartX + nPos + 17, nStartY + LENGTH_OF_LONG_MARKING + 20);
+                rcNumber.SetRect(nStartX + nPos - (TEXTBOX_SIZE_X_AXIS / 2), nStartY + LENGTH_OF_LONG_MARKING + 5, nStartX + nPos + (TEXTBOX_SIZE_X_AXIS / 2), nStartY + LENGTH_OF_LONG_MARKING + 20);
                 pDC->DrawText(strNum, rcNumber, DT_CENTER);
 
                 nMarkingNum = 0;
@@ -114,6 +117,25 @@ void CAxis::Draw(CDC *pDC, U32 nStartX, U32 nStartY)
     }
     else if(m_eDirection == AD_VERTICAL)
     {
+        SetGraphicsMode(pDC->m_hDC, GM_ADVANCED);
+
+        if(m_strAxisTitle.compare("NoTitle"))
+        {
+            CFont font, font2, *pOldFont;
+            LOGFONT logFont;
+            font.CreatePointFont(100, "Arial");
+            font.GetLogFont(&logFont);
+            logFont.lfEscapement = 900;
+            logFont.lfOrientation = 900;
+            font2.CreateFontIndirect(&logFont);
+            pOldFont = pDC->SelectObject(&font2);
+
+            rcNumber.SetRect(nStartX - TEXTBOX_SIZE_Y_AXIS - 10, 0, nStartX + 100, nStartY);
+            pDC->DrawText(m_strAxisTitle.c_str(), rcNumber, DT_SINGLELINE | DT_LEFT | DT_VCENTER);
+
+            pDC->SelectObject(pOldFont);
+        }
+
         pDC->MoveTo(nStartX, nStartY);
         pDC->LineTo(nStartX, nStartY - m_nLength);
 
@@ -133,7 +155,7 @@ void CAxis::Draw(CDC *pDC, U32 nStartX, U32 nStartY)
                     strNum.Format("%d^%d", (U32)fMag, nStartValue);
                 else
                     strNum.Format("%d", nStartValue);
-                rcNumber.SetRect(nStartX - LENGTH_OF_LONG_MARKING - 55, nStartY - nPos - 7, nStartX - LENGTH_OF_LONG_MARKING - 5, nStartY - nPos + 7);
+                rcNumber.SetRect(nStartX - TEXTBOX_SIZE_Y_AXIS, nStartY - nPos - 7, nStartX - LENGTH_OF_LONG_MARKING - 5, nStartY - nPos + 7);
                 pDC->DrawText(strNum, rcNumber, DT_RIGHT);
 
                 nMarkingNum = 0;

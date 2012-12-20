@@ -31,6 +31,9 @@ void CAxisManager::DrawAxis(CDC *pDC, LONG cx, LONG cy)
     m_pAxisVertical->SetLength(cy - GRAPH_BOTTOM_GAP);
     m_pAxisHorizontal->SetLength(cx - GRAPH_LEFT_GAP);
 
+    m_pAxisVertical->SetAxisTitle(m_pNGM->GetDataTitle(m_pNGM->GetMainDataCol()));
+    //m_pAxisHorizontal->SetAxisTitle(m_pNGM->GetDataTitle(m_pNGM->GetLegendCol()));
+
     m_pAxisVertical->Draw(pDC, GRAPH_LEFT_GAP, cy - GRAPH_BOTTOM_GAP);
     m_pAxisHorizontal->Draw(pDC, GRAPH_LEFT_GAP, cy - GRAPH_BOTTOM_GAP);
 
